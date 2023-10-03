@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'entities/user.entity';
+import { AddUserDto } from 'src/dtos/user/add.user.dto';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -19,6 +20,11 @@ export class UserService {
             where: {
                 userId: id
             }
-        });
+        });   
     }
+
+    add(data: AddUserDto){
+        
+    }
+
 }

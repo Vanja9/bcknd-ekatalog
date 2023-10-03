@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { User } from 'entities/user.entity';
-import { UserService } from './services/user/user.service';
+import { UserService } from '../services/user/user.service';
 ;
 
 @Controller()
@@ -21,9 +21,6 @@ getWorld(): string {
 
 }
 
-@Get('api/user') //https://localhost:3000/api/user
-getAllUsers(): Promise<User[]>{
- return this.userService.getAll();
-}
+
 
 }
