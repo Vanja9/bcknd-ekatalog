@@ -9,6 +9,7 @@ import { Telefon } from 'entities/Telefon';
 import { Proizvodjac } from 'entities/Proizvodjac';
 import { OperativniSistem } from 'entities/OperativniSistem';
 import { Artikl } from 'entities/Artikl';
+import { UserController } from './controllers/api/user.controller';
 
 
 @Module({
@@ -28,7 +29,10 @@ import { Artikl } from 'entities/Artikl';
     TypeOrmModule.forFeature([ User ])
 
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController,
+    UserController,
+  ],
   providers: [UserService],
 })
 export class AppModule {}
