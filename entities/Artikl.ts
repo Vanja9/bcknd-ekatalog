@@ -39,9 +39,6 @@ export class Artikl {
   @Column("varchar", { name: "velicina_dijagonale", length: 64 })
   velicinaDijagonale: string;
 
-  @Column("varchar", { name: "t_standard", length: 64 })
-  tStandard: string;
-
   @Column("text", { name: "opis", nullable: true })
   opis: string | null;
 

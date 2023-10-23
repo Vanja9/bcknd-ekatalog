@@ -72,12 +72,15 @@ export class UserService {
         passwordHash.update(data.password)
 
         const passwordHashString = passwordHash.digest('hex').toUpperCase();
-
-
+        
         user.passwordHash = passwordHashString;
         user.isAdmin = data.isAdmin;
 
-        return await this.user.save(user);
+        try{
+            return await this.user.save(user)
+        } catch{ return new ApiRes("error", -1005, null);
+
+        }
 
     }
 
