@@ -26,6 +26,17 @@ export class UserService {
         });   
     }
 
+
+    async getAdmin(username: string){
+        return await this.user.findOne({
+            where: {
+                username: username,
+                isAdmin : true
+                
+            }
+        })
+    }
+
     async add(data: AddUserDto)/* : Promise<User | ApiRes> */ {
         const crypto = require('crypto');
         const passwordHash = crypto.createHash('sha512')
