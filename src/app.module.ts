@@ -20,6 +20,7 @@ import { SystemService } from './services/system/system.service';
 import { TstandardService } from './services/tstandard/tstandard.service';
 import { ProizvodjacService } from './services/proizvodjac/proizvodjac.service';
 import { ArtiklService } from './services/artikl/artikl.service';
+import { AuthController } from './controllers/api/auth.controller';
 
 
 @Module({
@@ -31,14 +32,17 @@ import { ArtiklService } from './services/artikl/artikl.service';
       username: DataBase.username,
       password: DataBase.password,
       database: DataBase.database,
-      entities: [ User, TStandard, Telefon, Proizvodjac, OperativniSistem, Artikl ]
+      autoLoadEntities: true
       
       
     }),
-
     TypeOrmModule.forFeature([ 
       User,
-      Telefon
+      Telefon,
+      OperativniSistem,
+      TStandard,
+      Proizvodjac,
+      Artikl
     ])
 
   ],
@@ -50,6 +54,7 @@ import { ArtiklService } from './services/artikl/artikl.service';
     TstandardController,
     ProizvodjacController,
     ArtiklController,
+    AuthController
   ],
   providers: [
     UserService,

@@ -1,8 +1,13 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, Req } from "@nestjs/common";
 import { LoginUserDto } from "src/dtos/user/login.user.dto";
 import { ApiRes } from "src/misc/api.response.class";
 import { UserService } from "src/services/user/user.service";
 import * as crypto from 'crypto'
+import { LoginInfoUserDto } from "src/dtos/user/login.info.user.dto";
+import * as jwt from 'jsonwebtoken';
+import { JwtDataUserDto } from "src/dtos/user/jwt.data.user.dto";
+import { Request } from "express";
+import { jwtSecret } from "config/jwt.secret";
 
 @Controller('auth')
 export class AuthController {
@@ -10,7 +15,7 @@ export class AuthController {
 
 
     @Post('login')
-    async doLogin(@Body() data: LoginUserDto){
+    async doLogin(@Body() data: LoginUserDto, @Req() req: Request){
         const admin = await this.userService.getAdmin(data.username)
 
         if(!admin){ 
@@ -21,10 +26,35 @@ export class AuthController {
         passwordHash.update(data.password)
         const passwordHashString = passwordHash.digest('hex').toUpperCase()
 
-        if(admin.passwordHash === passwordHashString){
+        if(admin.passwordHash !== passwordHashString){
             return new Promise(resolve => resolve(new ApiRes('error', -3007, "Pogresna sifra")))
         }
-             
+         
+        
+        const jwtData = new JwtDataUserDto();
+        jwtData.userId = admin.userId
+        jwtData.username = admin.username
+
+        let sada = new Date();
+        sada.setDate(sada.getDate()+ 14);
+        const istekTimestamp = sada.getTime() / 1000
+        jwtData.ext = istekTimestamp
+
+        jwtData.ip = req.ip.toString();
+        jwtData.ua = req.headers["user-agent"];
+
+        let token: string = jwt.sign({...jwtData}, jwtSecret);
+
+        const responseObject = new LoginInfoUserDto(
+            admin.userId,
+            admin.username,
+            token
+        )
+            return new Promise(resolve => resolve(responseObject))
+
+
+
+
     }
 
 
