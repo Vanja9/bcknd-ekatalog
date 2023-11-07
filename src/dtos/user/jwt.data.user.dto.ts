@@ -1,7 +1,7 @@
 export class JwtDataUserDto{
     userId: number;
     username: string;
-    ext: number;
+    exp: number;
     ip: string;
     ua: string;
 
