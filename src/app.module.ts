@@ -22,6 +22,7 @@ import { ProizvodjacService } from './services/proizvodjac/proizvodjac.service';
 import { ArtiklService } from './services/artikl/artikl.service';
 import { AuthController } from './controllers/api/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
+import { Photo } from 'entities/Photo';
 
 
 @Module({
@@ -43,7 +44,8 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
       OperativniSistem,
       TStandard,
       Proizvodjac,
-      Artikl
+      Artikl,
+      Photo
     ])
 
   ],

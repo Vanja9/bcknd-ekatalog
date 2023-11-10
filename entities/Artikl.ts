@@ -4,11 +4,13 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { OperativniSistem } from "./OperativniSistem";
 import { Telefon } from "./Telefon";
 import { TStandard } from "./TStandard";
+import { Photo } from "./Photo";
 
 @Index("fk_artikl_telefon", ["telefonId"], {})
 @Index("fk_operativni_sistem_artikl", ["operativniSistemId"], {})
@@ -70,5 +72,8 @@ export class Artikl {
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "t_standard_id", referencedColumnName: "tStandardId" }])
-  tStandard_2: TStandard;
+  tStandard: TStandard;
+
+  @OneToMany(() => Photo, (photo) => photo.artikl)
+  photos: Photo[];
 }

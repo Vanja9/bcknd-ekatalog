@@ -12,7 +12,7 @@ export class Korisnik {
   @Column("varchar", { name: "password_hash", length: 255 })
   passwordHash: string;
 
-  @Column("varchar", { name: "email", length: 64, default: '' })
+  @Column("varchar", { name: "email", length: 64 })
   email: string;
 
   @Column("tinyint", { name: "is_admin", width: 1, default: () => "'0'" })

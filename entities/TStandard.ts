@@ -13,6 +13,6 @@ export class TStandard {
   @Column("varchar", { name: "naziv", length: 64 })
   naziv: string;
 
-  @OneToMany(() => Artikl, (artikl) => artikl.tStandard_2)
+  @OneToMany(() => Artikl, (artikl) => artikl.tStandard)
   artikls: Artikl[];
 }
