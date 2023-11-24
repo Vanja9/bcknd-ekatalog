@@ -23,6 +23,10 @@ import { ArtiklService } from './services/artikl/artikl.service';
 import { AuthController } from './controllers/api/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
 import { Photo } from 'entities/Photo';
+import { PhotoController } from './controllers/api/photo.controller';
+import { FileService } from './services/file/file.service';
+import { MemoryStoredFile, NestjsFormDataModule } from 'nestjs-form-data';
+import { PhotoService } from './services/photo/photo.service';
 
 
 @Module({
@@ -46,7 +50,11 @@ import { Photo } from 'entities/Photo';
       Proizvodjac,
       Artikl,
       Photo
-    ])
+    ]),
+    
+    NestjsFormDataModule.config({
+        storage: MemoryStoredFile,
+    })
 
   ],
   controllers: [
@@ -57,7 +65,8 @@ import { Photo } from 'entities/Photo';
     TstandardController,
     ProizvodjacController,
     ArtiklController,
-    AuthController
+    AuthController,
+    PhotoController
   ],
   providers: [
     UserService,
@@ -66,6 +75,8 @@ import { Photo } from 'entities/Photo';
     TstandardService,
     ProizvodjacService,
     ArtiklService,
+    FileService,
+    PhotoService
   ],
 })
 export class AppModule implements NestModule {
@@ -74,5 +85,6 @@ export class AppModule implements NestModule {
     .apply(AuthMiddleware)
     .exclude('auth/*')
     .forRoutes('api/*')
+    
   }
 }
