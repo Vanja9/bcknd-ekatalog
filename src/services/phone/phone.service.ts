@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
-import { Telefon } from "entities/Telefon";
+import { Telefon } from "src/entities/Telefon";
 import { AddPhoneDto } from "src/dtos/phone/add.phone.dto";
 import { EditPhoneDto } from "src/dtos/phone/edit.phone.dto";
 import { ApiRes } from "src/misc/api.response.class";

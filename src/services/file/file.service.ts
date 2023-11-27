@@ -7,13 +7,23 @@ import * as fs from "fs"
 
 @Injectable()
 export class FileService {
-    async saveFile( photo: MemoryStoredFile){
+    async saveFile( file: MemoryStoredFile){
         const uuid = crypto.randomUUID();
 
-        const name = uuid + "." + photo.extension;
+        const name = uuid + "." + file.extension;
 
-        await fs.promises.writeFile("./public/" + name, photo.buffer)
+        await fs.promises.writeFile("./public/" + name, file.buffer)
 
         return "/" + name
     }
+
+    async saveImage( photo : MemoryStoredFile ) {
+
+        // Skaliranje slike, modifikacije itd...
+        //const file = ...;
+        // return await this.saveFile(file);
+
+
+    }
+
 }

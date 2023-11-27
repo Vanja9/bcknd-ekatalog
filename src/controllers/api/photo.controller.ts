@@ -3,6 +3,7 @@ import { FormDataRequest } from "nestjs-form-data";
 import { PhotoDTO } from "src/dtos/photo/photo.dto";
 import { FileService } from "src/services/file/file.service";
 import { PhotoService } from "src/services/photo/photo.service";
+import * as fileType from 'file-type'
 
 @Controller("api/photo")
 export class PhotoController{
@@ -24,5 +25,8 @@ export class PhotoController{
 
     }
     
+
+    
+
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Proizvodjac } from "entities/Proizvodjac";
+import { Proizvodjac } from "src/entities/Proizvodjac";
 import { AddPhoneDto } from "src/dtos/phone/add.phone.dto";
 import { AddProizvodjacDto } from "src/dtos/proizvodjac/add.proizvodjac.dto";
 import { EditProizvodjacDto } from "src/dtos/proizvodjac/edit.proizvodjac.dto";

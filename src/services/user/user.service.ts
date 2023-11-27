@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'entities/user.entity';
-import { resolve } from 'path';
+import { User } from 'src/entities/user.entity';
 import { AddUserDto } from 'src/dtos/user/add.user.dto';
 import { EditUserDto } from 'src/dtos/user/edite.user.dto';
 import { ApiRes } from 'src/misc/api.response.class';

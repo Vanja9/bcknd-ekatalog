@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { OperativniSistem } from "entities/OperativniSistem";
+import { OperativniSistem } from "src/entities/OperativniSistem";
 import { AddSystemDto } from "src/dtos/system/add.system.dto";
 import { EditSystemDto } from "src/dtos/system/edit.system.dto";
 import { ApiRes } from "src/misc/api.response.class";

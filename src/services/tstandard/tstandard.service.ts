@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { TStandard } from "entities/TStandard";
+import { TStandard } from "src/entities/TStandard";
 import { AddTstandardDto } from "src/dtos/tstandard/add.tsstandard.dto";
 import { EditTstandardDto } from "src/dtos/tstandard/edit.tsstandard.dto";
 import { ApiRes } from "src/misc/api.response.class";

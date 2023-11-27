@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Artikl } from "entities/Artikl";
+import { Artikl } from "src/entities/Artikl";
 import { AddArtiklDto } from "src/dtos/artikl/add.artikl.dto";
 import { EditArtiklDto } from "src/dtos/artikl/edit.artikl.dto";
 import { ApiRes } from "src/misc/api.response.class";

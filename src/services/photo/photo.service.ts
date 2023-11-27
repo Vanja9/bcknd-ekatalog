@@ -1,8 +1,9 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Photo } from "entities/Photo";
+import { Photo } from "src/entities/Photo";
 import { ApiRes } from "src/misc/api.response.class";
 import { Repository } from "typeorm";
+import * as fileType from 'file-type'
 
 @Injectable()
 export class PhotoService{
