@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Photo } from "src/entities/Photo";
 import { ApiRes } from "src/misc/api.response.class";
 import { Repository } from "typeorm";
-import * as fileType from 'file-type'
+
 
 @Injectable()
 export class PhotoService{
@@ -30,6 +30,22 @@ export class PhotoService{
  
     }
 
-    
+    async findOneByArticleId(id : number){
+        return await this.photo.findOne({
+            where:{
+                artiklId : id
+            }
+        })
+    }
+
+    async deleteByArticleId(id : number) {
+        return await this.photo.delete({
+            artiklId: id
+        });
+    }
+
+    async deleteById (id : number){
+        return await this.photo.delete(id)
+    }
 
 }

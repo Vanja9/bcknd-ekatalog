@@ -1,9 +1,11 @@
-import { Body, Controller, Inject, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Inject, Param, Post } from "@nestjs/common";
 import { FormDataRequest } from "nestjs-form-data";
 import { PhotoDTO } from "src/dtos/photo/photo.dto";
 import { FileService } from "src/services/file/file.service";
 import { PhotoService } from "src/services/photo/photo.service";
-import * as fileType from 'file-type'
+import { ApiRes } from "src/misc/api.response.class";
+import * as fs from 'fs'
+
 
 @Controller("api/photo")
 export class PhotoController{
@@ -26,7 +28,31 @@ export class PhotoController{
     }
     
 
-    
+    @Delete('deletePhoto/:artiklId')
+    public async deletePhoto(
+        @Param('artiklId') artiklId : number
+    ){
+        const photo = await this.photoService.findOneByArticleId(artiklId);
+
+        if (!photo) {
+            return new ApiRes('error', -5012, null)
+        }
+
+        try {
+            fs.unlinkSync("./public" + photo.imagePath)
+        } catch {}
+        
+        const deleteResult = await this.photoService.deleteByArticleId(artiklId)
+        if(deleteResult.affected == 0){
+            return new ApiRes('error', -5012, 'Slika nije pronadjena')
+        }
+
+        return new ApiRes('ok', -0, 'Slika obrisana') 
+
+
+
+    }
+
 
 
 }

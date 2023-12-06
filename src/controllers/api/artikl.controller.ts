@@ -12,6 +12,8 @@ export class ArtiklController{
         private artiklService: ArtiklService
     ) { }
 
+
+    
     @Get()
     async getAll(){
         return await this.artiklService.getAll();
@@ -32,5 +34,7 @@ export class ArtiklController{
         return await this.artiklService.editById(id, data);
         
     }
+
+    
 
 }

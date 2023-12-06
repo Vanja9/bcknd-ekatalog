@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Param } from "@nestjs/common";
 import { MemoryStoredFile} from "nestjs-form-data"
 import * as crypto from "crypto"
 import * as fs from "fs"
@@ -25,5 +25,8 @@ export class FileService {
 
 
     }
+
+     
+
 
 }
