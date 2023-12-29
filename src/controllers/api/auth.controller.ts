@@ -15,7 +15,7 @@ export class AuthController {
     constructor(public userService: UserService) {}
 
 
-    @Post('login')
+    @Post('admin/login')
     async doLogin(@Body() data: LoginUserDto, @Req() req: Request){
         const admin = await this.userService.getAdmin(data.username)
 

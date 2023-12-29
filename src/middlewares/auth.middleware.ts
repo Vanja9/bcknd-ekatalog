@@ -32,15 +32,21 @@ export class AuthMiddleware implements NestMiddleware {
             throw new HttpException('Bad ua', HttpStatus.UNAUTHORIZED );
         }
 
-        const admin = await this.userService.getAdmin(jwtData.username)
-        if(!admin){
-            throw new HttpException('Admin not found', HttpStatus.UNAUTHORIZED );
+        if(jwtData.isAdmin) {   
+            const admin = await this.userService.getAdmin(jwtData.username)
+            if(!admin){
+                throw new HttpException('Admin not found', HttpStatus.UNAUTHORIZED );
+            }
+        } else {
+            const user = await this.userService.getById(jwtData.userId)
         }
 
         const trenutniTimeStamp = new Date().getTime() / 1000
         if(trenutniTimeStamp >= jwtData.exp){
             throw new HttpException('Token has expired ', HttpStatus.UNAUTHORIZED );
         }
+
+        req.token = jwtData
 
         next()
     }
